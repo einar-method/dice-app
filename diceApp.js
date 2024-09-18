@@ -8,22 +8,41 @@ function updateCSSVariables(newVars) {
     }
 };
 
+function urlToCssVars() {
+    const urlParams = getURLParams();
+    const newStyles = {
+        '--font-main': urlParams.fontMain,
+        '--button-color': urlParams.buttonColor,
+        '--btn-text-color': urlParams.btnTextColor,
+        '--btn-shadow-color': urlParams.btnShadowColor,
+        '--text-bright-color': urlParams.textBrightColor,
+        '--text-dark-color': urlParams.textDarkColor,
+        '--link-color': urlParams.linkColor,
+        '--background-primary-color': urlParams.backgroundPrimaryColor,
+        '--background-secondary-color': urlParams.backgroundSecondaryColor,
+        '--background-results-color': urlParams.backgroundResultsColor,
+        '--app-width': urlParams.appWidth,
+        '--app-height': urlParams.appHeight,
+    };
+    return newStyles;
+};
+
 function getURLParams() {
     const params = new URLSearchParams(window.location.search);
     const result = {};
     for (const [key, value] of params.entries()) {
-        //result[key] = decodeURIComponent(value);
+        result[key] = decodeURIComponent(value);
         console.log("This is for the URL Param", key, value);
-        result[`--${key}`] = decodeURIComponent(value);
-        console.log("url parse result:", result)
+        console.log("URL parse result:", result);
     }
+    console.log("URL parse FINAL result:", result);
     return result;
 };
 
 document.addEventListener("DOMContentLoaded", function() {
     console.log("We are starting to try and parse now")
     // Get URL parameters
-    const urlParams = getURLParams();
+    const urlParams = urlToCssVars();
     
     // Call updateCSSVariables with the URL parameters
     updateCSSVariables(urlParams);

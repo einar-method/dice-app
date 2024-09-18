@@ -85,18 +85,18 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
 
     // Build the query string
     const queryParams = new URLSearchParams({
-    fontMain: encodeURIComponent(fontMain),
-    buttonColor: encodeURIComponent(buttonColor),
-    btnTextColor: encodeURIComponent(btnTextColor),
-    btnShadowColor: encodeURIComponent(btnShadowColor),
-    textBrightColor: encodeURIComponent(textBrightColor),
-    textDarkColor: encodeURIComponent(textDarkColor),
-    linkColor: encodeURIComponent(linkColor),
-    backgroundPrimaryColor: encodeURIComponent(backgroundPrimaryColor),
-    backgroundSecondaryColor: encodeURIComponent(backgroundSecondaryColor),
-    backgroundResultsColor: encodeURIComponent(backgroundResultsColor),
-    appWidth: encodeURIComponent(appWidth),
-    appHeight: encodeURIComponent(appHeight)
+        fontMain: encodeURIComponent(fontMain),
+        buttonColor: encodeURIComponent(buttonColor),
+        btnTextColor: encodeURIComponent(btnTextColor),
+        btnShadowColor: encodeURIComponent(btnShadowColor),
+        textBrightColor: encodeURIComponent(textBrightColor),
+        textDarkColor: encodeURIComponent(textDarkColor),
+        linkColor: encodeURIComponent(linkColor),
+        backgroundPrimaryColor: encodeURIComponent(backgroundPrimaryColor),
+        backgroundSecondaryColor: encodeURIComponent(backgroundSecondaryColor),
+        backgroundResultsColor: encodeURIComponent(backgroundResultsColor),
+        appWidth: encodeURIComponent(appWidth),
+        appHeight: encodeURIComponent(appHeight)
     }).toString();
 
     // Build the iframe URL
