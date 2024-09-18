@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="CJ McClellan">
+    <meta name="description" content="Maccreations' web based dice app 'Plink Dice' is a stand-alone or plugin dice roller.">
     <link rel="stylesheet" href="style.css">
     <title>Plink Dice</title>
 </head>
 
 <body>
-    <p class="green__text">Need to roll some dice?</p>
-    <div id="web-tool-container">
-        <div id="dice-btns">  
-            <button class="dice__btns" id="d6-btn">D6</button>
-            <button class="dice__btns" id="boon-btn">Boon</button>
-            <button class="dice__btns" id="bane-btn">Bane</button>
-            <button class="dice__btns" id="d20-btn">D20</button>
-            <button class="dice__btns" id="adv-btn">Adv</button>
-            <button class="dice__btns" id="disAdv-btn">Disadvan</button>
+    <h1>welcome to plinkDice</h1>
+    <p class="green__text">Need to roll some dice? We've got you covered.</p>
+    <div id="appHolder">
+        <div id="web-tool-container" class="sizable">
+            <button class="dice__btns" id="d6-btn">d6</button>
+            <button class="dice__btns" id="boon-btn">boon</button>
+            <button class="dice__btns" id="bane-btn">bane</button>
+            <button class="dice__btns" id="d20-btn">d20</button>
+            <button class="dice__btns" id="adv-btn">advantage</button>
+            <button class="dice__btns" id="disAdv-btn">disadv</button>
             <div class="dice-box">
                 <p>
-                    <input 
-                    type="text" 
-                    name="formula-input" 
-                    id="formula-input"
-                    class="dice-input" 
-                    pattern="\d+d\d+(kl|kh|fr)?"
-                    title="Enter a valid dice formula, such as 2d20kh"
-                    placeholder="#d#"
-                    autocomplete="off">
+                <input 
+                type="text" 
+                name="formula-input" 
+                id="formula-input"
+                class="dice-input" 
+                pattern="\d+d\d+(kl|kh|fr)?"
+                title="Enter a valid dice formula, such as 2d20kh"
+                placeholder="#d#"
+                autocomplete="off">
                 </p>
-                <button id="formula-btn">Formula</button> 
+                <button id="formula-btn">formula</button> 
             </div>
-            <button class="dice__btns" id="dice-reset">Clear</button>
+            <button class="dice__btns" id="dice-reset">clear</button>
             <section class="dice-results">
-                <dialog id="🎲🎲">Final Roll: <span id="final-roll"></span></dialog>
-                <dialog id="🎲">All Rolls: <span id="all-roll"></span></dialog>
+                <dialog id="🎲🎲">final: <span id="final-roll"></span></dialog>
+                <dialog id="🎲">individual: <span id="all-roll"></span></dialog>
             </section>
         </div>
     </div>
-    <p id="codeGiven"></p>
-    <button id="exportAppBtn">export</button>
+    <section class="export__section">
+        <p>Grab a quick plug and play iframe for your own website by clicking "export" below.
+            If you're looking to adjust the style and size of the embed, click on "customize". 
+            Check out the <a href="https://github.com/maccreations/plink-dice#readme">readme on Github</a> for more information.
+        </p>
+        <button id="exportAppBtn">export</button>
+        <button id="customizeAppBtn">customize</button>
+        <!-- <div id="codeGiven"></div> -->
+        <button class="export__section_copyBtn" onclick="copyCode()">copy to clipboard</button>
+        <div class="export__section_codeBox" id="codeToCopy" onclick="copyCode()">
+        </div>
+        
+    </section>
     <script src="diceApp.js"></script>
 </body>
 </html>

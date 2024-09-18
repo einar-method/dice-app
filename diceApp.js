@@ -99,12 +99,6 @@ function setDiceListeners() {
     document.getElementById("disAdv-btn").onclick = () => {
         showDiceRoll(2, 20, "kl");
     };
-
-    const tab = document.getElementById("dice-btns");
-    const tabContent = document.querySelectorAll("dice-box");
-
-    console.table(tab);
-    console.table(tabContent);
     
     document.getElementById("formula-input").addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
@@ -156,5 +150,25 @@ document.getElementById("exportAppBtn")?.addEventListener('click', function () {
     const embedCode = `<iframe src="https://einar-method.github.io/dice-app/embed" width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`;
     
     //document.getElementById('embed-code').value = embedCode;
-    document.getElementById("codeGiven").textContent = embedCode;
+    document.getElementById("codeToCopy").textContent = embedCode;
 });
+
+function copyCode() {
+    const code = document.getElementById("codeToCopy").innerText;
+
+    const copyBtn = document.querySelector(".export__section_copyBtn");
+    // Copy the code block content to the clipboard
+    navigator.clipboard.writeText(code).then(() => {
+    // Change button text to "Copied"
+    copyBtn.textContent = "code copied!";
+    copyBtn.classList.add("copied");
+
+    // Change text back to "Copy" after 2 seconds
+    setTimeout(() => {
+        copyBtn.textContent = "copy to clipboard";
+        copyBtn.classList.remove("copied");
+    }, 2000);
+    }).catch(err => {
+        console.error("Failed to copy: ", err);
+    });
+}
