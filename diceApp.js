@@ -4,6 +4,7 @@ function updateCSSVariables(newVars) {
     // Loop through the newVars object and update each CSS variable
     for (const [key, value] of Object.entries(newVars)) {
       root.style.setProperty(key, value);
+      console.log("This is for the css root", key, value);
     }
 };
 
@@ -12,11 +13,13 @@ function getURLParams() {
     const result = {};
     for (const [key, value] of params.entries()) {
         result[key] = decodeURIComponent(value);
+        console.log("This is for the URL Param", key, value);
     }
     return result;
 };
 
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("We are starting to try and parse now")
     // Get URL parameters
     const urlParams = getURLParams();
     
