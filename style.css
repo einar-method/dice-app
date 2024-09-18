@@ -7,18 +7,25 @@
   -moz-osx-font-smoothing: grayscale;
 
   --font-main: "Lexend", sans-serif;
-  --primary-color: #da9758;
-  --secondary-color: #4f345a;
-  --tirtary-color: #99ca3c;
-  --white-color: #f2f0e6;
-  --black-color: #212121;
+  --button-color: #4f345a;
+  --btn-text-color: #f2f0e6;
+  --btn-shadow-color: #f2f0e6;
+  --text-bright-color: #f2f0e6;
+  --text-dark-color: #212121;
+  --link-color: #99ca3c;
+  --background--primary-color: #da9758;
+  --background--secondary-color: gray;
+  --background--results-color: #f2f0e6;
+
+  --app-width: 800px;
+  --app-height: 250px;
 }
 
 * {
   font-family: var(--font-main);
   margin: 0;
   font-size: 14px;
-  color: var(--white-color);
+  color: var(--text-dark-color);
 }
 
 html, body {
@@ -26,13 +33,13 @@ html, body {
 }
   
 body {
-  background-color: gray; 
+  background-color: var(--background--primary-color); 
 }
 
 h1 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--tirtary-color);
+  color: var(--link-color);
   text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
@@ -45,14 +52,13 @@ h1 {
 	flex-wrap: wrap;
 } */
 
-.dice__section p {
-  /* font-size: 1.5rem;
-  font-weight: bold; */
-  color: var(--tirtary-color);
+/* .dice__section p {
+  color: red;
   text-align: center;
   padding-top: 2em;
   padding-bottom: 1em;
-}
+} */
+
 .grid-box {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -109,7 +115,7 @@ h1 {
 
 .dice-box {
   grid-column: span 2;
-  background: var(--secondary-color);
+  background: var(--button-color);
   margin: 0;
   padding: 0;
   height: 100%;
@@ -134,13 +140,13 @@ h1 {
   margin: 0;
   /*   height: 20px; */
   font-weight: normal;
-  color: var(--white-color);
+  color: var(--btn-text-color)
 }
 
 #dice-btn, #formula-btn {
-  background-color: var(--secondary-color);
+  background-color: var(--button-color);
   border: 0px;
-  color: var(--white-color);
+  color: var(--btn-text-color);
   cursor: pointer;
   /* font-size: 2.8vmin; */
   /* font-size: max(2.8vmin, 3rem); */
@@ -151,13 +157,13 @@ form p {
 }
 
 ::placeholder {
-  color: var(--black-color);
+  color: var(--text-dark-color);
   opacity: 0.5; /* For Firefox */
 }
 
 :-ms-input-placeholder {
   /* Some older browsers */
-  color: var(--black-color);
+  color: var(--black-colorcolor);
 }
 
 .dice-input { /* Is this being used??? */
@@ -171,8 +177,8 @@ form p {
   border-radius: 5px;
   /*   padding: 5px; */
   /*   padding: 1.45vmin; */
-  background-color: var(--tirtary-color);
-  box-shadow: inset 2px 2px 5px #000000, inset -1px -1px 1px #a2d740;
+  background-color: var(--background--secondary-color);
+  box-shadow: inset 2px 2px 5px #000000, inset -1px -1px 1px var(--button-color);
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -184,7 +190,7 @@ form p {
 .dice__btns {
   /* width: 100%; */
   color: rgb(255, 255, 255);
-  background-color: var(--secondary-color);
+  background-color: var(--button-color);
   border: 0px solid rgba(1, 92, 24, 0.246);
   border-radius: 0px;
   padding: 0;
@@ -196,7 +202,7 @@ form p {
   /* font-size: minMax(2.8vmin, 1rem); */
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: inset 0 0 0 0 var(--secondary-color);
+  box-shadow: inset 0 0 0 0 var(--btn-shadow-color);
   -webkit-transition: ease-out 0.4s;
   -moz-transition: ease-out 0.4s;
   transition: ease-out 0.4s;
@@ -204,8 +210,9 @@ form p {
 }
 
 .dice__btns:hover {
-  box-shadow: inset 0 0 0 100px var(--white-color);
-  color: rgb(0, 0, 0);
+  box-shadow: inset 0 0 0 100px var(--btn-shadow-color);
+  /* color: rgb(0, 0, 0); */
+  color: var(--button-color);
 }
 
 /* FOR THE POPUP DIALOGS */
@@ -215,7 +222,7 @@ dialog {
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   color: var(--black-color);
-  background-color: var(--primary-color);
+  background-color: var(--background--results-color);
 }
 
 #error {
@@ -244,7 +251,8 @@ dialog {
 
 /* MAIN PAGE STUFF */
 #appHolder {
-  height: 300px;
+  height: var(--app-height);
+  width: var(--app-width);
 }
 
 .export__section {
@@ -257,28 +265,29 @@ dialog {
 }
 
 .export__section a {
-  color: var(--tirtary-color);
+  color: var(--link-color);
 }
 
 .export__section button {
-  background-color: var(--black-color);
+  background-color: var(--text-dark-color);
   border: none;
   cursor: pointer;
-  color: var(--tirtary-color);
+  color: var(--link-color);
   font-weight: bold;
   padding: 1em;
   border-radius: 5px;
   transition: all 500ms;
 }
 .export__section button:hover {
-  background-color: var(--tirtary-color);
+  background-color: var(--link-color);
   color: var(--black-color);
 }
 
 .export__section_codeBox {
   /* position: relative; */
-  background-color: var(--black-color);
-  border: 1px solid #ddd;
+  background-color: var(--text-dark-color);
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
   padding: 5px;
   font-family: monospace;
   white-space: nowrap; /* Wrap text if needed */
@@ -291,15 +300,15 @@ dialog {
   /* top: 10px;
   right: 10px; */
   padding: 5px 10px;
-  background-color: var(--tirtary-color);
-  color: var(--white-color);
+  /* background-color: var(--tirtary-color); */
+  color: var(--text-bright-color);
   font-size: xx-small;
   width: 100px;
 }
 
 .export__section_copyBtn.copied {
-  background-color: var(--tirtary-color);
-  color: var(--black-color);
+  background-color: var(--link-color);
+  color: var(--text-dark-color);
 }
 
 .sizable * {

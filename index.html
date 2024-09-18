@@ -11,6 +11,7 @@
 
 <body>
     <h1>welcome to plinkDice</h1>
+    <!-- <iframe src="https://einar-method.github.io/dice-app/embed" width="500" height="300" frameborder="0" allowfullscreen></iframe> -->
     <p class="green__text">Need to roll some dice? We've got you covered.</p>
     <div id="appHolder">
         <div id="web-tool-container" class="sizable">
@@ -50,10 +51,59 @@
         <button id="customizeAppBtn">customize</button>
         <!-- <div id="codeGiven"></div> -->
         <button class="export__section_copyBtn" onclick="copyCode()">copy to clipboard</button>
-        <div class="export__section_codeBox" id="codeToCopy" onclick="copyCode()">
-        </div>
+        <pre class="export__section_codeBox" id="codeToCopy" onclick="copyCode()">
+        </pre>
         
     </section>
+    <form id="styleForm">
+        <!-- Font Selector -->
+        <label for="fontMain">Select Font:</label>
+        <select id="fontMain" name="font-main">
+          <option value="'Lexend', sans-serif">Lexend</option>
+          <option value="'Arial', sans-serif">Arial</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="'Courier New', monospace">Courier New</option>
+        </select>
+      
+        <!-- Color Pickers -->
+        <label for="buttonColor">Button Color:</label>
+        <input type="color" id="buttonColor" name="button-color" value="#4f345a">
+      
+        <label for="btnTextColor">Button Text Color:</label>
+        <input type="color" id="btnTextColor" name="btn-text-color" value="#f2f0e6">
+      
+        <label for="btnShadowColor">Button Shadow Color:</label>
+        <input type="color" id="btnShadowColor" name="btn-shadow-color" value="#f2f0e6">
+      
+        <label for="textBrightColor">Bright Text Color:</label>
+        <input type="color" id="textBrightColor" name="text-bright-color" value="#f2f0e6">
+      
+        <label for="textDarkColor">Dark Text Color:</label>
+        <input type="color" id="textDarkColor" name="text-dark-color" value="#212121">
+      
+        <label for="linkColor">Link Color:</label>
+        <input type="color" id="linkColor" name="link-color" value="#99ca3c">
+      
+        <label for="backgroundPrimaryColor">Background Primary Color:</label>
+        <input type="color" id="backgroundPrimaryColor" name="background--primary-color" value="#da9758">
+      
+        <label for="backgroundSecondaryColor">Background Secondary Color:</label>
+        <input type="color" id="backgroundSecondaryColor" name="background--secondary-color" value="gray">
+      
+        <label for="backgroundResultsColor">Background Results Color:</label>
+        <input type="color" id="backgroundResultsColor" name="background--results-color" value="#f2f0e6">
+      
+        <!-- Size Inputs with Step -->
+        <label for="appWidth">App Width (px):</label>
+        <input type="number" id="appWidth" name="app-width" value="800" step="15">
+
+        <label for="appHeight">App Height (px):</label>
+        <input type="number" id="appHeight" name="app-height" value="250" step="15">
+
+        <button type="submit">Apply Changes</button>
+    </form>
+      
     <script src="diceApp.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

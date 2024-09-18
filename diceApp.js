@@ -1,3 +1,29 @@
+function updateCSSVariables(newVars) {
+    const root = document.documentElement; // Reference to the :root element
+    
+    // Loop through the newVars object and update each CSS variable
+    for (const [key, value] of Object.entries(newVars)) {
+      root.style.setProperty(key, value);
+    }
+};
+
+function getURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    const result = {};
+    for (const [key, value] of params.entries()) {
+        result[key] = decodeURIComponent(value);
+    }
+    return result;
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get URL parameters
+    const urlParams = getURLParams();
+    
+    // Call updateCSSVariables with the URL parameters
+    updateCSSVariables(urlParams);
+});
+
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }; // Easy random int between two numbers. 
@@ -142,33 +168,3 @@ function setDiceListeners() {
         clearDiceResults();
     };
 };
-
-document.getElementById("exportAppBtn")?.addEventListener('click', function () {
-    const width = document.getElementById("exportWidth")?.value || '600';
-    const height = document.getElementById("exportHeight")?.value || '400';
-    
-    const embedCode = `<iframe src="https://einar-method.github.io/dice-app/embed" width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`;
-    
-    //document.getElementById('embed-code').value = embedCode;
-    document.getElementById("codeToCopy").textContent = embedCode;
-});
-
-function copyCode() {
-    const code = document.getElementById("codeToCopy").innerText;
-
-    const copyBtn = document.querySelector(".export__section_copyBtn");
-    // Copy the code block content to the clipboard
-    navigator.clipboard.writeText(code).then(() => {
-    // Change button text to "Copied"
-    copyBtn.textContent = "code copied!";
-    copyBtn.classList.add("copied");
-
-    // Change text back to "Copy" after 2 seconds
-    setTimeout(() => {
-        copyBtn.textContent = "copy to clipboard";
-        copyBtn.classList.remove("copied");
-    }, 2000);
-    }).catch(err => {
-        console.error("Failed to copy: ", err);
-    });
-}
