@@ -53,6 +53,8 @@ body {
 }
 
 #dice-btns {
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.1rem;
@@ -165,6 +167,7 @@ form p {
 }
 
 .dice__btns {
+  /* width: 100%; */
   color: rgb(255, 255, 255);
   background-color: var(--secondary-color);
   border: 0px solid rgba(1, 92, 24, 0.246);
