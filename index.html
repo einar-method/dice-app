@@ -1,48 +1,45 @@
-<!-- A simplified version for embedding -->
-<html>
-  <head>
-    <title>Plink Dice</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+    <title>Plink Dice</title>
+</head>
+
+<body>
+    <p class="green__text">Need to roll some dice?</p>
     <div id="web-tool-container">
-        <p class="green__text">Need to roll some dice?</p>
-        <div id="dice-tab">
-            <section class="button-wrapper">
-                <div id="dice-btns">  
-            
-                <button class="dice__btns" id="d6-btn">D6</button>
-                <button class="dice__btns" id="boon-btn">Boon</button>
-                <button class="dice__btns" id="bane-btn">Bane</button>
-                <button class="dice__btns" id="d20-btn">D20</button>
-                <button class="dice__btns" id="adv-btn">Adv</button>
-                <button class="dice__btns" id="disAdv-btn">Disadvan</button>
-                <div class="dice-box">
-                    <p>
-                        <input 
-                        type="text" 
-                        name="formula-input" 
-                        id="formula-input"
-                        class="dice-input" 
-                        pattern="\d+d\d+(kl|kh|fr)?"
-                        title="Enter a valid dice formula, such as 2d20kh"
-                        placeholder="#d#"
-                        autocomplete="off">
-                    </p>
-                    <button id="formula-btn">Formula</button> 
-                </div>
-                <button class="dice__btns" id="dice-reset">Clear</button>
-                </div>
-            </section>
-            
+        <div id="dice-btns">  
+            <button class="dice__btns" id="d6-btn">D6</button>
+            <button class="dice__btns" id="boon-btn">Boon</button>
+            <button class="dice__btns" id="bane-btn">Bane</button>
+            <button class="dice__btns" id="d20-btn">D20</button>
+            <button class="dice__btns" id="adv-btn">Adv</button>
+            <button class="dice__btns" id="disAdv-btn">Disadvan</button>
+            <div class="dice-box">
+                <p>
+                    <input 
+                    type="text" 
+                    name="formula-input" 
+                    id="formula-input"
+                    class="dice-input" 
+                    pattern="\d+d\d+(kl|kh|fr)?"
+                    title="Enter a valid dice formula, such as 2d20kh"
+                    placeholder="#d#"
+                    autocomplete="off">
+                </p>
+                <button id="formula-btn">Formula</button> 
+            </div>
+            <button class="dice__btns" id="dice-reset">Clear</button>
             <section class="dice-results">
                 <dialog id="🎲🎲">Final Roll: <span id="final-roll"></span></dialog>
                 <dialog id="🎲">All Rolls: <span id="all-roll"></span></dialog>
             </section>
         </div>
-        <button id="exportAppBtn">Export</button>
-        <p id="codeGiven"></p>
     </div>
+    <p id="codeGiven"></p>
+    <button id="exportAppBtn">export</button>
     <script src="diceApp.js"></script>
-  </body>
+</body>
 </html>
