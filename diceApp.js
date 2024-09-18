@@ -148,3 +148,13 @@ function setDiceListeners() {
         clearDiceResults();
     };
 };
+
+document.getElementById("exportAppBtn").addEventListener('click', function () {
+    const width = document.getElementById("exportWidth")?.value || '600';
+    const height = document.getElementById("exportHeight")?.value || '400';
+    
+    const embedCode = `<iframe src="https://einar-method.github.io/dice-app/embed" width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`;
+    
+    //document.getElementById('embed-code').value = embedCode;
+    document.getElementById("codeGiven").textContent = embedCode;
+});
