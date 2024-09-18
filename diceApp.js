@@ -149,7 +149,7 @@ function setDiceListeners() {
     };
 };
 
-document.getElementById("exportAppBtn").addEventListener('click', function () {
+document.getElementById("exportAppBtn")?.addEventListener('click', function () {
     const width = document.getElementById("exportWidth")?.value || '600';
     const height = document.getElementById("exportHeight")?.value || '400';
     
