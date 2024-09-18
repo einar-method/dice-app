@@ -12,8 +12,10 @@ function getURLParams() {
     const params = new URLSearchParams(window.location.search);
     const result = {};
     for (const [key, value] of params.entries()) {
-        result[key] = decodeURIComponent(value);
+        //result[key] = decodeURIComponent(value);
         console.log("This is for the URL Param", key, value);
+        result[`--${key}`] = decodeURIComponent(value);
+        console.log("url parse result:", result)
     }
     return result;
 };
