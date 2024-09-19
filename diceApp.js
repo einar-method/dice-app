@@ -48,6 +48,8 @@ function getURLParams() {
 //     updateCSSVariables(urlParams);
 // });
 
+
+//TODO - we need to remove certian variables no longer used
 document.addEventListener("DOMContentLoaded", function() {
     //const defaultUrl = "https://einar-method.github.io/dice-app/embed";
     const currentUrl = window.location.href;
