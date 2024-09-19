@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend&display=swap");
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --font-main: "Lexend", sans-serif;
+  --button-color: #4f345a;
+  --btn-text-color: #f2f0e6;
+  --btn-shadow-color: #f2f0e6;
+  --text-bright-color: #f2f0e6;
+  --text-dark-color: #212121;
+  --link-color: #99ca3c;
+  --background--primary-color: #da9758;
+  --background--secondary-color: gray;
+  --background--results-color: #f2f0e6;
+
+  --app-width: 100%;
+  --app-height: 250px;
+}
+
+* {
+  font-family: var(--font-main);
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-dark-color);
+}
+
+html, body {
+    overflow: hidden;
+}
+  
+body {
+  background-color: var(--background--secondary-color); 
+}
+
+/* #web-tool-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+} */
+
+/* .dice__section p {
+  color: red;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 1em;
+} */
+
+.grid-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  transition: all 0.8s ease-in-out;
+}
+
+#web-tool-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.1rem;
+  grid-auto-rows: 20%;
+  /* background-color: var(--tirtary-color); */
+}
+
+.dice-results {
+  grid-column: span 3;
+  grid-row: span 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .15rem;
+  /* height: 4rem; */
+  /* height: 40%; */
+  /* grid-auto-rows: 40vh; */
+}
+
+#🎲🎲, #🎲 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  white-space: pre-wrap;
+  /* font-size: 2.8vmin; */
+  /* font-size: max(2.8vmin, 3rem); */
+  /* justify-content: center; */
+  align-items: center;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+#🎲🎲 {
+  grid-column: span 1;
+}
+#🎲 {
+  grid-column: span 2;
+}
+
+/* INPUT FORMS */
+.📝form-btns {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.1rem;
+}
+
+.dice-box {
+  grid-column: span 2;
+  background: var(--button-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  border: transparent; /* 1px solid rgba(0, 0, 0, 0.1); */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.dice-box p {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  transition: 0.2s all ease-in-out;
+  width: 100%;
+  margin: 0;
+  /*   height: 20px; */
+  font-weight: normal;
+  color: var(--btn-text-color)
+}
+
+/* #dice-btn, #formula-btn {
+  background-color: var(--button-color);
+  border: 0px;
+  color: var(--btn-text-color);
+  cursor: pointer;
+} */
+
+form p {
+  margin: 0;
+}
+
+::placeholder {
+  color: var(--text-dark-color);
+  opacity: 0.5; /* For Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Some older browsers */
+  color: var(--black-colorcolor);
+}
+
+.dice-input { /* Is this being used??? */
+  /* margin-right: 8px; */
+  border: 0;
+  outline: 0;
+  /* font-size: 2.8vmin; */
+  /* font-size: max(2.8vmin, 3rem); */
+  text-align: center;
+  /*   font-weight: bold; */
+  border-radius: 5px;
+  /*   padding: 5px; */
+  /*   padding: 1.45vmin; */
+  background-color: var(--background--secondary-color);
+  box-shadow: inset 2px 2px 5px #000000, inset -1px -1px 1px var(--button-color);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.dice__btns, #formula-btn {
+  /* width: 100%; */
+  color: rgb(255, 255, 255);
+  background-color: var(--button-color);
+  border: 0px solid rgba(1, 92, 24, 0.246);
+  border-radius: 0px;
+  padding: 0;
+  /*   padding: 5px; */
+  /*   margin: 0.1rem; */
+  display: inline-block;
+  /* font-size: 2.8vmin; */
+  /* font-size: max(2.8vmin, 3rem); */
+  /* font-size: minMax(2.8vmin, 1rem); */
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 var(--btn-shadow-color);
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+  /*    flex-grow: 1; */
+}
+
+.dice__btns:hover, #formula-btn:hover {
+  box-shadow: inset 0 0 0 100px var(--btn-shadow-color);
+  /* color: rgb(0, 0, 0); */
+  color: var(--button-color);
+}
+
+/* FOR THE POPUP DIALOGS */
+dialog {
+  opacity: 0; /* Start with opacity set to 0 */
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  color: var(--black-color);
+  background-color: var(--background--results-color);
+}
+
+#error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#tip {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  /* font-size: .8rem;
+  position: fixed;
+  width: 6rem;
+  top: 4%;
+  left: 70%; */
+  /* transform: translate(-50%, -50%); */
+}
+/* END OF POPUP DIALOGS */
+
+.sizable * {
+  font-size: max(2.8vmin, 3rem);
+}
+/* When the screen width is less than 650px, use min() */
+@media (max-width: 700px) {
+  .sizable * {
+    font-size: min(5vw, 3rem);
+  }
+}
+@media (max-height: 250px) {
+  .sizable * {
+    font-size: min(5vh, 3rem);
+  }
+}
+  

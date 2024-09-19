@@ -1,12 +1,18 @@
-document.getElementById("exportAppBtn")?.addEventListener('click', function () {
-    const width = document.getElementById("exportWidth")?.value || '600';
-    const height = document.getElementById("exportHeight")?.value || '400';
+document.addEventListener('DOMContentLoaded', function() {
+    const embedCode = `<iframe src="https://einar-method.github.io/dice-app/embed" width="100%" height="350" frameborder="0" allowfullscreen></iframe>`;
     
-    const embedCode = `<iframe src="https://einar-method.github.io/dice-app/embed" width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`;
-    
-    //document.getElementById('embed-code').value = embedCode;
     document.getElementById("codeToCopy").textContent = embedCode;
 });
+
+// document.getElementById("exportAppBtn")?.addEventListener('click', function () {
+//     const width = document.getElementById("exportWidth")?.value || '600';
+//     const height = document.getElementById("exportHeight")?.value || '400';
+    
+//     const embedCode = `<iframe src="https://einar-method.github.io/dice-app/embed" width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`;
+    
+//     //document.getElementById('embed-code').value = embedCode;
+//     document.getElementById("codeToCopy").textContent = embedCode;
+// });
 
 function copyCode() {
     const code = document.getElementById("codeToCopy").innerText;
@@ -67,7 +73,7 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
     // for (const [key, value] of Object.entries(newStyles)) {
     //     document.documentElement.style.setProperty(key, value);
     // }
-    updateCSSVariables(newStyles);
+    //updateCSSVariables(newStyles);
 
     // Get all the input values from the form
     const fontMain = document.getElementById("fontMain").value;
@@ -107,5 +113,20 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
 
     // Display the code snippet in the DOM element with id codeToCopy
     document.getElementById("codeToCopy").textContent = codeSnippet;
+    const myIframe = document.getElementById("plinkDice");
+    Object.assign(myIframe, {
+      src: iframeUrl,
+      height: appHeight,
+      width: appWidth
+    });
+    
+});
+
+document.querySelectorAll(".styleForm__holder").forEach(holder => {
+    holder.addEventListener("click", function() {
+        this.classList.toggle("active");
+        const content = this.nextElementSibling;
+        content.style.maxHeight = content.style.maxHeight ? null : `${content.scrollHeight}px`;
+    });
 });
 
