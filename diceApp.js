@@ -145,29 +145,32 @@ window.onload = function() {
 }
 
 function setDiceListeners() {
+    document.getElementById("d4-btn").onclick = () => {
+        showDiceRoll(1, 4, "fr");
+    };
     document.getElementById("d6-btn").onclick = () => {
         showDiceRoll(1, 6, "fr");
     };
-    
-    document.getElementById("boon-btn").onclick = () => {
-        showDiceRoll(2, 6, "kh");
+    document.getElementById("d8-btn").onclick = () => {
+        showDiceRoll(1, 8, "fr");
     };
-    
-    document.getElementById("bane-btn").onclick = () => {
-        showDiceRoll(2, 6, "kl");
+    document.getElementById("d10-btn").onclick = () => {
+        showDiceRoll(1, 10, "fr");
     };
-
+    document.getElementById("d12-btn").onclick = () => {
+        showDiceRoll(1, 12, "fr");
+    };
     document.getElementById("d20-btn").onclick = () => {
         showDiceRoll(1, 20, "fr");
     };
     
-    document.getElementById("adv-btn").onclick = () => {
-        showDiceRoll(2, 20, "kh");
-    };
+    // document.getElementById("adv-btn").onclick = () => {
+    //     showDiceRoll(2, 20, "kh");
+    // };
     
-    document.getElementById("disAdv-btn").onclick = () => {
-        showDiceRoll(2, 20, "kl");
-    };
+    // document.getElementById("disAdv-btn").onclick = () => {
+    //     showDiceRoll(2, 20, "kl");
+    // };
     
     document.getElementById("formula-input").addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
