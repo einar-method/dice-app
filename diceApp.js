@@ -39,14 +39,33 @@ function getURLParams() {
     return result;
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("We are starting to try and parse now")
-    // Get URL parameters
-    const urlParams = urlToCssVars();
+// document.addEventListener("DOMContentLoaded", function() {
+//     console.log("We are starting to try and parse now")
+//     // Get URL parameters
+//     const urlParams = urlToCssVars();
     
-    // Call updateCSSVariables with the URL parameters
-    updateCSSVariables(urlParams);
+//     // Call updateCSSVariables with the URL parameters
+//     updateCSSVariables(urlParams);
+// });
+
+document.addEventListener("DOMContentLoaded", function() {
+    //const defaultUrl = "https://einar-method.github.io/dice-app/embed";
+    const currentUrl = window.location.href;
+    
+    // Check if the current URL is not the default embed link and has user-defined parameters
+    if (currentUrl.includes('?')) {
+        console.log("We are starting to try and parse now");
+        
+        // Get URL parameters
+        const urlParams = urlToCssVars();
+        
+        // Call updateCSSVariables with the URL parameters
+        updateCSSVariables(urlParams);
+    } else {
+        console.log("No user-defined parameters found or default URL is in use.");
+    }
 });
+
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
