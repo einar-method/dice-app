@@ -62,13 +62,16 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.1rem;
-  grid-auto-rows: 20%;
+  /* grid-auto-rows: 20%; */
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  /* grid-auto-rows: repeat(5, minmax(0, 1fr)); */
   /* background-color: var(--tirtary-color); */
 }
 
 .dice-results {
   grid-column: span 3;
-  grid-row: span 2;
+  /* grid-row: span 2; */
+  /* grid-row: 1fr; */
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .15rem;
@@ -279,3 +282,77 @@ dialog {
 }
   
 /* TODO: we need to figure out why the formula btn changes size at low app hieght */
+
+fieldset {
+  height: 100%;
+  width: 100%;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-block-start: 0em;
+  padding-inline-start: 0em;
+  padding-inline-end: 0em;
+  padding-block-end: 0em;
+  padding: 0;
+}
+
+/* .dice__type_text {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+} */
+
+.roll__type_options {
+  background: var(--btn-text-color);
+  color: var(--text-dark-color);
+  border: transparent; /* 1px solid rgba(0, 0, 0, 0.1); */
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.roll__type_options label {
+  background: transparent;
+  /*   border: 1px solid transparent; */
+  border-radius: 2px;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  justify-content: center;
+  /*   font-size: 3.2vmin; */
+  transition: 0.2s all ease-in-out;
+  width: 100%;
+  font-weight: normal;
+  color: var(--text-dark-color);
+  cursor: pointer;
+}
+
+.roll__type_options input[type="radio"] {
+  display: none;
+}
+
+.roll__type_options label:hover {
+  background: var(--button-color);
+  opacity: 50%;
+  color: var(--text-bright-color);
+}
+
+.roll__type_options input[type="radio"]:checked + label {
+  background: var(--button-color);
+  opacity: 100%;
+  /*   border: 1px solid rgba(0, 0, 0, 0.1); */
+  color: var(--text-bright-color);
+}
+
+#roll-type-toggles {
+  user-select: none;
+}

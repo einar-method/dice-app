@@ -85,6 +85,12 @@ function fadeInElements(elementIds) {
     });
 };
 
+function clearDiceResults() {
+    document.getElementById("formula-input").value = "";
+    dialogFade(document.getElementById("🎲🎲"), 0)
+    dialogFade(document.getElementById("🎲"), 0)
+};
+
 /// WAY TOO MUCH CODE FOR A TRANSITION ///
 function dialogFade(element, opacity) {
     element.style.opacity = opacity;
@@ -94,6 +100,7 @@ function dialogFade(element, opacity) {
     });
 };
 
+// THIS IS THE HEART OF THE DICE BRAIN
 function rollDice() {
     //const dice = document.getElementById("dice");
     const diceRoll = Math.floor(Math.random() * 6) + 1;
@@ -101,39 +108,61 @@ function rollDice() {
     console.log("Dice rolled: " + diceRoll);
 };
 
-function clearDiceResults() {
-    document.getElementById("formula-input").value = "";
-    dialogFade(document.getElementById("🎲🎲"), 0)
-    dialogFade(document.getElementById("🎲"), 0)
-};
-
-function showDiceRoll(num, face, type) {
-    const die = { amount: num, face: face, type: type };
+function showDiceRoll(roll) {
+    //roll = { amount: 1, face: 6, math: "+", mod: 0, type: "frRollType" }
+    console.log("roll", roll);
     const rolls = [];
 
-    for (let i = 0; i < die.amount; i++) {
-        rolls.push(getRndInteger(1, die.face));
+    for (let i = 0; i < roll.amount; i++) {
+        rolls.push(getRndInteger(1, roll.face));
     }
 
     let finalRoll = 0;
 
-    if (die.type == "fr") {
+    if (roll.type == "fr") {
         finalRoll = rolls.reduce((sum, roll) => sum + roll, 0);
-        console.log("The final roll is:", finalRoll);
-    } else if (die.type == "kh") {
+        console.log("With a flat roll, the subtotal is:", finalRoll);
+    } else if (roll.type == "kh") {
         finalRoll = Math.max(...rolls);
-        console.log("With a boon, final roll is:", finalRoll);
-    } else if (die.type == "kl") {
+        console.log("With a boon, the subtotal is:", finalRoll);
+    } else if (roll.type == "kl") {
         finalRoll = Math.min(...rolls);
-        console.log("With a bane, final roll is:", finalRoll);
+        console.log("With a bane, the subtotal is:", finalRoll);
     } else {
-        console.error("Invalid die type");
+        console.error("Invalid roll type");
+    }
+    // if (roll.type == "frRollType") {
+    //     finalRoll = rolls.reduce((sum, roll) => sum + roll, 0);
+    //     console.log("The final roll is:", finalRoll);
+    // } else if (roll.type == "khRollType") {
+    //     finalRoll = Math.max(...rolls);
+    //     console.log("With a boon, final roll is:", finalRoll);
+    // } else if (roll.type == "klRollType") {
+    //     finalRoll = Math.min(...rolls);
+    //     console.log("With a bane, final roll is:", finalRoll);
+    // } else {
+    //     console.error("Invalid roll type");
+    // }
+
+    if (roll.mod != null) {
+        if (roll.math == "-") {
+            finalRoll = finalRoll - roll.mod;
+        } else if (roll.math == "+") {
+            finalRoll = finalRoll + roll.mod;
+        } else {
+            console.error("Invalid math operator");
+        }
+        console.log("With a modifier, final roll is:", finalRoll);
     }
 
+    displayRolls(rolls, finalRoll);
+};
+
+function displayRolls(rolls, final) {
     const innerAllRolls = document.getElementById("all-roll");
     const innerFinalRoll = document.getElementById("final-roll");
     innerAllRolls.innerHTML = rolls.join(", ");
-    innerFinalRoll.innerHTML = finalRoll;
+    innerFinalRoll.innerHTML = final;
     document.getElementById("🎲🎲").open = true;
     document.getElementById("🎲").open = true;
 
@@ -146,24 +175,36 @@ window.onload = function() {
     setDiceListeners();
 }
 
+function checkAndInitiateRoll(faceSent) {
+    const rollType = checkToggle();
+    const amount = rollType == "fr" ? 1 : 2;
+    //console.log("dice rolled:", amount);
+    const die = { amount: amount, face: faceSent, math: null, mod: null, type: rollType }
+    showDiceRoll(die);
+}
+
 function setDiceListeners() {
     document.getElementById("d4-btn").onclick = () => {
-        showDiceRoll(1, 4, "fr");
+        // const rollType = checkToggle();
+        // const amount = rollType == "frRollType" ? 1 : 2;
+        // console.log("dice rolled:", amount);
+        // showDiceRoll(amount, 4, rollType);
+        checkAndInitiateRoll(4);
     };
     document.getElementById("d6-btn").onclick = () => {
-        showDiceRoll(1, 6, "fr");
+        checkAndInitiateRoll(6);
     };
     document.getElementById("d8-btn").onclick = () => {
-        showDiceRoll(1, 8, "fr");
+        checkAndInitiateRoll(8);
     };
     document.getElementById("d10-btn").onclick = () => {
-        showDiceRoll(1, 10, "fr");
+        checkAndInitiateRoll(10);
     };
     document.getElementById("d12-btn").onclick = () => {
-        showDiceRoll(1, 12, "fr");
+        checkAndInitiateRoll(12);
     };
     document.getElementById("d20-btn").onclick = () => {
-        showDiceRoll(1, 20, "fr");
+        checkAndInitiateRoll(20);
     };
     
     // document.getElementById("adv-btn").onclick = () => {
@@ -184,35 +225,103 @@ function setDiceListeners() {
     document.getElementById("formula-btn").onclick = () => {
         const form = document.getElementById('formula-input');
         
+        const errLine1 = "Please enter a dice formula, such as 2d20."
+        const errLine2 = "The largest die face is a 10 digit number (9,999,999,999)."
+        const errLine3 = "The largest die amount is 999."
+        const errLine4 = "You can add or subtract a modifier up to 99."
+        const errLine5 = "Examples include:\n  2d20\n  2d20+3\n  2d20-3\n  2d20kh (advantage)\n  2d20kl (disadvantage)\n  2d20fr (sum of rolls, same as 2d20)"
+        const errorMessage0 = errLine1;
+        const errorMessage1 = errLine1 + "\n" + errLine2 + "\n" + errLine3 + "\n" + errLine4 + "\n" + errLine5;
+
         if (!form.value) { 
-            alert("Please enter a dice formula, such as 2d20");    
-        } else if (form.value.length > 12) { 
-            alert("Entry too long or incorrect formula.");
-        } else {
-            const die = { amount: 1, face: 6, type: "fr" };
+            alert(errorMessage0);    
+        } //else if (form.value.length > 12) { 
+        //     alert("Entry too long or incorrect formula.");
+        // } 
+        else {
+            const die = { amount: 1, face: 6, math: "+", mod: 0, type: "frRollType" };
     
             // Parse the input string to get amount, face, and type
-            const matches = form.value.match(/^(\d+)d(\d+)(kl|kh|fr)?$/);
-            
+            const matches = form.value.match(/^(\b[1-9][0-9]{0,2})d([1-9][0-9]{0,9})((\+|\-)(\b[1-9][0-9]{0,1}))?(kl|kh|fr)?$/);
+            // const matches = form.value.match(/^(\b[1-9][0-9]{2}\b)d(\d+)((\+|\-)(\d+))?(kl|kh|fr)?$/);
+            // const matches = form.value.match(/^(\d+)d(\d+)((\+|\-)(\d+))?(kl|kh|fr)?$/);
+            // const matches = form.value.match(/^(\d+)d(\d+)(kl|kh|fr)?$/);
+            console.log("matches:", matches);
             if (matches) {
                 die.amount = parseInt(matches[1], 10);
+                console.log("faces:", matches[2]);
                 die.face = parseInt(matches[2], 10);
-                die.type = matches[3] || "fr";
+                die.math = matches[4] || null;
+                die.mod = parseInt(matches[5], 10) || null;
+                die.type = matches[6] || "frRollType";
+
+                // if (die.math == "-") {
+                //     die.mod = -die.mod;
+                // }
+                if (die.math) {
+                    console.log("math is:", die.math);
+                } else { console.log("we have no math") }
+
+                // if (die.type == "kl") {
+                //     die.type = "klRollType";
+                // } else if (die.type == "kh") {
+                //     die.type = "khRollType";
+                // } else {
+                //     die.type = "frRollType";
+                // } // we need this because I changed the form value
+                // // to the longer string type, and the regex is
+                // // working with the shorter string type
     
                 console.log("Dice formula was accepted:", die);
     
-                showDiceRoll(die.amount, die.face, die.type)
+                showDiceRoll(die)
+                // showDiceRoll(die.amount, die.face, die.type)
     
                 // const buttonAudio = new Audio("Assets/dice.mp3");
                 // buttonAudio.volume = 0.2;
                 // buttonAudio.play();
             } else {
-                alert("Incorrect formula format. Please use a format like '2d20', '4d4kh', '3d6kl', etc.");
+                alert(errorMessage1);
             }
         }
     };
     
-    document.getElementById("dice-reset").onclick = () => {
-        clearDiceResults();
-    };
+    // document.getElementById("dice-reset").onclick = () => {
+    //     clearDiceResults();
+    // };
 };
+
+
+
+
+
+
+/// SWITCH BETWEEN TOOL TABS ///
+const tabToggle = document.getElementById("roll-type-toggles");
+const tabBtns = document.querySelectorAll('input[name="diceTypeToggle"]');
+// tabToggle.onclick = () => {
+//     assignTab()
+// };
+
+function checkToggle() {
+    for (const radioButton of tabBtns) {
+        if (radioButton.checked) {
+          return radioButton.value;
+        }
+}}; // Finds which tab is toggled
+
+// function assignTab() {
+//     if (checkToggle() == "klRollType") {
+//         //klRollType
+//         console.log("klRollType");
+//     } else if (checkToggle() == "frRollType") {
+//         //frRollType
+//         console.log("frRollType");
+//     } else if (checkToggle() == "khRollType") {
+//         //khRollType
+//         console.log("khRollType");
+//     } else {
+//         console.error("Failed to find a roll type tab. Please refresh the page. ERROR CODE: 278");
+// }};
+
+// assignTab();

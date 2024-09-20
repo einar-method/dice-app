@@ -7,6 +7,10 @@
 </head>
 <body>
     <div id="web-tool-container" class="sizable">
+        <!-- <div class="dice__type_container">
+            <input type="range" min="0" max="2" step="1" value="1" class="dice__type_slider">
+            <span id="diceTypeValue"></span> 
+        </div>   -->
         <button class="dice__btns" id="d4-btn">
             <svg viewBox="0 0 512 512"
             height="50"
@@ -77,7 +81,44 @@
             </p>
             <button id="formula-btn">formula</button> 
         </div>
-        <button class="dice__btns" id="dice-reset">clear</button>
+        <!-- <button class="dice__btns" id="dice-reset">clear</button> -->
+        <div id="roll-type-container" class="roll__type_container">
+            <fieldset 
+                id="roll-type-toggles" 
+                class="roll__type_options" 
+            >
+
+            <p>
+                <input 
+                type="radio" 
+                name="diceTypeToggle" 
+                id="kl" 
+                value="kl"
+                class="diceTypeToggle"
+                checked>
+                <label for="kl">kl</label>
+            </p>
+
+            <p>
+                <input 
+                type="radio" 
+                name="diceTypeToggle" 
+                id="fr" 
+                value="fr"
+                class="diceTypeToggle">
+                <label for="fr">fr</label>
+            </p>
+            <p>
+                <input 
+                type="radio" 
+                name="diceTypeToggle" 
+                id="kh" 
+                value="kh"
+                class="diceTypeToggle">
+                <label for="kh">kh</label>
+            </p>
+            </fieldset>
+        </div>
         <section class="dice-results">
             <dialog id="🎲🎲">final: <span id="final-roll"></span></dialog>
             <dialog id="🎲">individual: <span id="all-roll"></span></dialog>
