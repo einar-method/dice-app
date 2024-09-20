@@ -239,7 +239,7 @@ function setDiceListeners() {
         //     alert("Entry too long or incorrect formula.");
         // } 
         else {
-            const die = { amount: 1, face: 6, math: "+", mod: 0, type: "frRollType" };
+            const die = { amount: 1, face: 6, math: "+", mod: 0, type: "fr" };
     
             // Parse the input string to get amount, face, and type
             const matches = form.value.match(/^(\b[1-9][0-9]{0,2})d([1-9][0-9]{0,9})((\+|\-)(\b[1-9][0-9]{0,1}))?(kl|kh|fr)?$/);
@@ -253,7 +253,7 @@ function setDiceListeners() {
                 die.face = parseInt(matches[2], 10);
                 die.math = matches[4] || null;
                 die.mod = parseInt(matches[5], 10) || null;
-                die.type = matches[6] || "frRollType";
+                die.type = matches[6] || "fr";
 
                 // if (die.math == "-") {
                 //     die.mod = -die.mod;
