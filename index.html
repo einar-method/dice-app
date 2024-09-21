@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <h1>welcome to plinkDice</h1>
-    <p class="welcome__text">Need to roll some dice? We've got you covered.</p>
+    <h1>plinkDice</h1>
+    <!-- <p class="welcome__text">Need to roll some dice? We've got you covered.</p> -->
     <iframe src="https://einar-method.github.io/dice-app/embed"  height="400px" width="auto" frameborder="0" id="plinkDice" allowfullscreen></iframe>
     <section class="export__section">
         <p>Grab a quick plug and play iframe for your own website by clicking on the "copy to clipboard" button below.
             If you're looking to adjust the style and size of the embed, tap the "customize export" button. 
-            Check out the <a href="https://github.com/einar-method/dice-app?tab=readme-ov-file#plinkdice">readme on Github</a> for more information.
+            Check out the <a href="https://github.com/einar-method/dice-app?tab=readme-ov-file#plinkdice" target="_blank">readme on Github</a> for more information.
         </p>
         <!-- <button id="exportAppBtn">export</button> -->
         <button class="export__section_copyBtn" onclick="copyCode()">copy to clipboard</button>
@@ -29,7 +29,7 @@
         <div class="styleForm__content">
             <form id="styleForm">
                 <!-- Font Selector -->
-                <label for="fontMain">Select Font:</label>
+                <label for="fontMain">Font:</label>
                 <select id="fontMain" name="font-main">
                 <option value="'Lexend', sans-serif">Lexend</option>
                 <option value="'Arial', sans-serif">Arial</option>
@@ -38,39 +38,38 @@
                 </select>
             
                 <!-- Color Pickers -->
-                <label for="buttonColor">Button Color:</label>
+                <label for="buttonColor">Button:</label>
                 <input type="color" id="buttonColor" name="button-color" value="#4f345a">
             
-                <label for="btnTextColor">Button Text Color:</label>
+                <label for="btnTextColor">Button Text:</label>
                 <input type="color" id="btnTextColor" name="btn-text-color" value="#f2f0e6">
             
-                <label for="btnShadowColor">Button Shadow Color:</label>
-                <input type="color" id="btnShadowColor" name="btn-shadow-color" value="#f2f0e6">
+                <!-- <label for="btnShadowColor">Button Shadow:</label>
+                <input type="color" id="btnShadowColor" name="btn-shadow-color" value="#f2f0e6"> -->
             
-                <label for="textBrightColor">Bright Text Color:</label>
+                <label for="textBrightColor">Bright Text:</label>
                 <input type="color" id="textBrightColor" name="text-bright-color" value="#f2f0e6">
             
-                <label for="textDarkColor">Dark Text Color:</label>
+                <label for="textDarkColor">Dark Text:</label>
                 <input type="color" id="textDarkColor" name="text-dark-color" value="#212121">
             
-                <label for="linkColor">Link Color:</label>
-                <input type="color" id="linkColor" name="link-color" value="#99ca3c">
+                <!-- <label for="linkColor">Link Color:</label>
+                <input type="color" id="linkColor" name="link-color" value="#99ca3c"> -->
             
-                <label for="backgroundPrimaryColor">Background Primary Color:</label>
+                <label for="backgroundPrimaryColor">Canvas:</label>
                 <input type="color" id="backgroundPrimaryColor" name="background--primary-color" value="#da9758">
             
-                <label for="backgroundSecondaryColor">Background Secondary Color:</label>
+                <label for="backgroundSecondaryColor">Results Left:</label>
                 <input type="color" id="backgroundSecondaryColor" name="background--secondary-color" value="gray">
             
-                <label for="backgroundResultsColor">Background Results Color:</label>
-                <input type="color" id="backgroundResultsColor" name="background--results-color" value="#f2f0e6">
+                <label for="backgroundTertiaryColor">Results Right:</label>
+                <input type="color" id="backgroundTertiaryColor" name="background--tertiary-color" value="#f2f0e6">
             
-                <!-- Size Inputs with Step -->
-                <label for="appWidth">App Width (px):</label>
+                <!-- <label for="appWidth">App Width (px):</label>
                 <input type="number" id="appWidth" name="app-width" value="800" step="15">
 
                 <label for="appHeight">App Height (px):</label>
-                <input type="number" id="appHeight" name="app-height" value="250" step="15">
+                <input type="number" id="appHeight" name="app-height" value="250" step="15"> -->
 
                 <button class="styleForm__submit" type="submit">Apply Changes</button>
             </form>

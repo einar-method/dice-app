@@ -12,10 +12,9 @@
   --btn-shadow-color: #f2f0e6;
   --text-bright-color: #f2f0e6;
   --text-dark-color: #212121;
-  --link-color: #99ca3c;
-  --background--primary-color: #da9758;
-  --background--secondary-color: gray;
-  --background--results-color: #f2f0e6;
+  --background-primary-color: lightgray;
+  --background-secondary-color: #e8fbe8;
+  --backgroun-tertiary-color: transparent;
 
   /* --app-width: 100%;
   --app-height: 250px; */
@@ -37,27 +36,7 @@ html, body {
 }
   
 body {
-  background-color: var(--background--secondary-color); 
-}
-
-/* #web-tool-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-wrap: wrap;
-} */
-
-/* .dice__section p {
-  color: red;
-  text-align: center;
-  padding-top: 2em;
-  padding-bottom: 1em;
-} */
-
-.grid-box {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  transition: all 0.8s ease-in-out;
+  background-color: var(--background-primary-color); 
 }
 
 #web-tool-container {
@@ -99,71 +78,24 @@ body {
 
 #🎲🎲 {
   grid-column: span 1;
+  background-color: var(--background-secondary-color);
 }
 #🎲 {
   grid-column: span 2;
-}
-
-/* INPUT FORMS */
-.📝form-btns {
-  grid-column: span 3;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.1rem;
-}
-
-.dice-box {
-  grid-column: span 2;
-  background: var(--button-color);
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  border: transparent; /* 1px solid rgba(0, 0, 0, 0.1); */
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  transition: all 0.2s ease-in-out;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.dice-box p {
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  display: inline-block;
-  padding: 0;
-  text-align: center;
-  transition: 0.2s all ease-in-out;
-  width: 100%;
-  margin: 0;
-  /*   height: 20px; */
-  font-weight: normal;
-  color: var(--btn-text-color)
-}
-
-/* #dice-btn, #formula-btn {
-  background-color: var(--button-color);
-  border: 0px;
-  color: var(--btn-text-color);
-  cursor: pointer;
-} */
-
-form p {
-  margin: 0;
+  background-color: var(--backgroun-tertiary-color);
 }
 
 ::placeholder {
-  color: var(--text-dark-color);
-  opacity: 0.5; /* For Firefox */
+  color: var(--text-bright-color);
+  /* opacity: 0.5; For Firefox */
 }
 
 :-ms-input-placeholder {
   /* Some older browsers */
-  color: var(--black-colorcolor);
+  color: var(--text-bright-color);
 }
 
-.dice-input { /* Is this being used??? */
+.formula__input {
   /* margin-right: 8px; */
   border: 0;
   outline: 0;
@@ -174,7 +106,8 @@ form p {
   border-radius: 5px;
   /*   padding: 5px; */
   /*   padding: 1.45vmin; */
-  background-color: var(--background--secondary-color);
+  background-color: var(--button-color);
+  color: var(--text-bright-color);
   box-shadow: inset 2px 2px 5px #000000, inset -1px -1px 1px var(--button-color);
   width: 100%;
   height: 100%;
@@ -184,11 +117,11 @@ form p {
   -webkit-appearance: none;
 }
 
-.dice__btns, #formula-btn {
+.dice__btns {
   /* width: 100%; */
-  color: rgb(255, 255, 255);
+  color: var(--btn-text-color);
   background-color: var(--button-color);
-  border: 0px solid rgba(1, 92, 24, 0.246);
+  /* border: 0px solid rgba(1, 92, 24, 0.246); */
   border-radius: 0px;
   padding: 0;
   /*   padding: 5px; */
@@ -199,15 +132,15 @@ form p {
   /* font-size: minMax(2.8vmin, 1rem); */
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: inset 0 0 0 0 var(--btn-shadow-color);
+  box-shadow: inset 0 0 0 0 var(--button-color);
   -webkit-transition: ease-out 0.4s;
   -moz-transition: ease-out 0.4s;
   transition: ease-out 0.4s;
   /*    flex-grow: 1; */
 }
 
-.dice__btns:hover, #formula-btn:hover {
-  box-shadow: inset 0 0 0 100px var(--btn-shadow-color);
+.dice__btns:hover {
+  box-shadow: inset 0 0 0 100px var(--button-color);
   color: var(--button-color);
 }
 
@@ -223,20 +156,8 @@ form p {
   /* box-shadow: inset 0 0 0 100px var(--btn-shadow-color); */
   /* color: rgb(0, 0, 0); */
   fill: var(--button-color);
-  background-color: var(--text-bright-color);
+  background-color: var(--btn-text-color);
 }
-
-/* svg path {
-  fill: var(--button-color);
-} */
-
-
-/* #d20-btn {
-  background-image: url('../embed/assets/d20.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
 
 /* FOR THE POPUP DIALOGS */
 dialog {
@@ -244,8 +165,8 @@ dialog {
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  color: var(--black-color);
-  background-color: var(--background--results-color);
+  color: var(--text-dark-color);
+  /* background-color: var(--background--results-color); */
 }
 
 #error {
@@ -287,25 +208,9 @@ dialog {
   
 /* TODO: we need to figure out why the formula btn changes size at low app hieght */
 
-/* fieldset {
-  height: 100%;
-  width: 100%;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-block-start: 0em;
-  padding-inline-start: 0em;
-  padding-inline-end: 0em;
-  padding-block-end: 0em;
-  padding: 0;
-} */
-
-/* .dice__type_text {
-  display: block;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-} */
+.roll__type_container {
+  border: 1px solid var(--button-color);
+}
 
 .roll__type_options {
   background: var(--btn-text-color);
@@ -373,23 +278,12 @@ dialog {
 .roll__type_options label:hover {
   background: var(--button-color);
   opacity: 50%;
-  color: var(--text-bright-color);
+  color: var(--btn-text-color);
 }
 
 .roll__type_options input[type="radio"]:checked + label {
   background: var(--button-color);
   opacity: 100%;
   /*   border: 1px solid rgba(0, 0, 0, 0.1); */
-  color: var(--text-bright-color);
+  color: var(--btn-text-color);
 }
-/* 
-#roll-type-toggles {
-  user-select: none;
-} */
-
-/* #roll-type-toggles p {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */

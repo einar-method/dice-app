@@ -10,19 +10,29 @@ function updateCSSVariables(newVars) {
 
 function urlToCssVars() {
     const urlParams = getURLParams();
+    // const newStyles = {
+    //     '--font-main': urlParams.fontMain,
+    //     '--button-color': urlParams.buttonColor,
+    //     '--btn-text-color': urlParams.btnTextColor,
+    //     '--btn-shadow-color': urlParams.btnShadowColor,
+    //     '--text-bright-color': urlParams.textBrightColor,
+    //     '--text-dark-color': urlParams.textDarkColor,
+    //     '--link-color': urlParams.linkColor,
+    //     '--background-primary-color': urlParams.backgroundPrimaryColor,
+    //     '--background-secondary-color': urlParams.backgroundSecondaryColor,
+    //     '--background-results-color': urlParams.backgroundResultsColor,
+    //     '--app-width': urlParams.appWidth,
+    //     '--app-height': urlParams.appHeight,
+    // };
     const newStyles = {
         '--font-main': urlParams.fontMain,
         '--button-color': urlParams.buttonColor,
         '--btn-text-color': urlParams.btnTextColor,
-        '--btn-shadow-color': urlParams.btnShadowColor,
         '--text-bright-color': urlParams.textBrightColor,
         '--text-dark-color': urlParams.textDarkColor,
-        '--link-color': urlParams.linkColor,
         '--background-primary-color': urlParams.backgroundPrimaryColor,
         '--background-secondary-color': urlParams.backgroundSecondaryColor,
-        '--background-results-color': urlParams.backgroundResultsColor,
-        '--app-width': urlParams.appWidth,
-        '--app-height': urlParams.appHeight,
+        '--backgroun-tertiary-color': urlParams.backgroundResultsColor,
     };
     return newStyles;
 };

@@ -54,20 +54,20 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
     event.preventDefault(); // Prevent form submission
 
     // Get all the input values from the form
-    const newStyles = {
-        '--font-main': document.getElementById("fontMain").value,
-        '--button-color': document.getElementById("buttonColor").value,
-        '--btn-text-color': document.getElementById("btnTextColor").value,
-        '--btn-shadow-color': document.getElementById("btnShadowColor").value,
-        '--text-bright-color': document.getElementById("textBrightColor").value,
-        '--text-dark-color': document.getElementById("textDarkColor").value,
-        '--link-color': document.getElementById("linkColor").value,
-        '--background--primary-color': document.getElementById("backgroundPrimaryColor").value,
-        '--background--secondary-color': document.getElementById("backgroundSecondaryColor").value,
-        '--background--results-color': document.getElementById("backgroundResultsColor").value,
-        '--app-width': `${document.getElementById("appWidth").value}px`,
-        '--app-height': `${document.getElementById("appHeight").value}px`,
-    };
+    // const newStyles = {
+    //     '--font-main': document.getElementById("fontMain").value,
+    //     '--button-color': document.getElementById("buttonColor").value,
+    //     '--btn-text-color': document.getElementById("btnTextColor").value,
+    //     '--btn-shadow-color': document.getElementById("btnShadowColor").value,
+    //     '--text-bright-color': document.getElementById("textBrightColor").value,
+    //     '--text-dark-color': document.getElementById("textDarkColor").value,
+    //     '--link-color': document.getElementById("linkColor").value,
+    //     '--background--primary-color': document.getElementById("backgroundPrimaryColor").value,
+    //     '--background--secondary-color': document.getElementById("backgroundSecondaryColor").value,
+    //     '--background--results-color': document.getElementById("backgroundResultsColor").value,
+    //     '--app-width': `${document.getElementById("appWidth").value}px`,
+    //     '--app-height': `${document.getElementById("appHeight").value}px`,
+    // };
 
     // // Update the CSS variables with the new values
     // for (const [key, value] of Object.entries(newStyles)) {
@@ -79,13 +79,13 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
     const fontMain = document.getElementById("fontMain").value;
     const buttonColor = document.getElementById("buttonColor").value;
     const btnTextColor = document.getElementById("btnTextColor").value;
-    const btnShadowColor = document.getElementById("btnShadowColor").value;
+    //const btnShadowColor = document.getElementById("btnShadowColor").value;
     const textBrightColor = document.getElementById("textBrightColor").value;
     const textDarkColor = document.getElementById("textDarkColor").value;
-    const linkColor = document.getElementById("linkColor").value;
+    //const linkColor = document.getElementById("linkColor").value;
     const backgroundPrimaryColor = document.getElementById("backgroundPrimaryColor").value;
     const backgroundSecondaryColor = document.getElementById("backgroundSecondaryColor").value;
-    const backgroundResultsColor = document.getElementById("backgroundResultsColor").value;
+    const backgroundTertiaryColor = document.getElementById("backgroundTertiaryColor").value;
     const appWidth = document.getElementById("appWidth").value;
     const appHeight = document.getElementById("appHeight").value;
 
@@ -94,16 +94,21 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
         fontMain: encodeURIComponent(fontMain),
         buttonColor: encodeURIComponent(buttonColor),
         btnTextColor: encodeURIComponent(btnTextColor),
-        btnShadowColor: encodeURIComponent(btnShadowColor),
         textBrightColor: encodeURIComponent(textBrightColor),
         textDarkColor: encodeURIComponent(textDarkColor),
-        linkColor: encodeURIComponent(linkColor),
         backgroundPrimaryColor: encodeURIComponent(backgroundPrimaryColor),
         backgroundSecondaryColor: encodeURIComponent(backgroundSecondaryColor),
-        backgroundResultsColor: encodeURIComponent(backgroundResultsColor),
-        appWidth: encodeURIComponent(appWidth),
-        appHeight: encodeURIComponent(appHeight)
+        backgroundTertiaryColor: encodeURIComponent(backgroundTertiaryColor)
     }).toString();
+
+    //ITEMS REMOVED from above
+    //btnShadowColor: encodeURIComponent(btnShadowColor),
+    //linkColor: encodeURIComponent(linkColor),
+    //appWidth: encodeURIComponent(appWidth),
+    //appHeight: encodeURIComponent(appHeight)
+
+    appHeight = "400px";
+    appWidth = "auto";
 
     // Build the iframe URL
     const iframeUrl = `https://einar-method.github.io/dice-app/embed?${queryParams}`;
@@ -127,6 +132,8 @@ document.querySelectorAll(".styleForm__holder").forEach(holder => {
         this.classList.toggle("active");
         const content = this.nextElementSibling;
         content.style.maxHeight = content.style.maxHeight ? null : `${content.scrollHeight}px`;
+        // content.style.width = "100%";
+        // content.style.maxHeight = content.style.maxHeight ? null : "100%";
     });
 });
 

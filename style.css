@@ -112,15 +112,19 @@ h1 {
   border-radius: 5px 5px 0 0;
   transition: all 500ms;
   font-size: xx-small;
-  width: 100px;
+  width: 150px;
+  text-wrap: nowrap;
 }
 .export__section_copyBtn:hover {
-  background-color: var(--white-color);
-  color: var(--black-color);
+  /* background-color: var(--white-color); */
+  filter: brightness(125%);
+  /* color: var(--black-color); */
 }
 .export__section_copyBtn.copied {
-  background-color: var(--tirtary-color);
-  color: var(--white-color);
+  /* background-color: var(--tirtary-color);
+  color: var(--white-color); */
+  background-color: var(--black-color);
+  color: var(--tirtary-color);
 }
 
 .export__section_codeBox {
@@ -135,11 +139,22 @@ h1 {
   overflow-x: auto;
 }
 
+/* .styleForm__section {
+  width: 100%;
+} */
+
+/* .styleForm__content {
+  width: 100%;
+  max-height: 100%;
+} */
+
 #styleForm {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1em;
   padding: 1em;
+  max-width: 100%; 
+  /* The difference between max-width and width here is huge */
 }
 
 @media (min-width: 768px) {
@@ -154,12 +169,30 @@ h1 {
   }
 }
 
-#styleForm > *:nth-child(25) {
-  grid-column: 1 / -1; /* Span across all columns */
+#styleForm label {
+  white-space: wrap;
+  /* word-break: break-all; */
 }
 
+/* #styleForm:last-child {
+  grid-column: 1 / -1; 
+} */
+/* #styleForm > *:nth-child(25) {
+  grid-column: 1 / -1; /* Span across all columns
+} */
+
+/* #fontMain {
+  width: 100%;
+} */
+/* #appWidth {
+  width: 100%
+}
+#appHeight {
+  width: 100px;
+} */
+
 .styleForm__submit {
-  /* grid-column: span 2; */
+  grid-column: span 2;
   background-color: var(--black-color);
   color: var(--tirtary-color);
   border: none;
