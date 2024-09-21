@@ -140,7 +140,7 @@ body {
 }
 
 .dice__btns:hover {
-  box-shadow: inset 0 0 0 100px var(--button-color);
+  box-shadow: inset 0 0 0 100px var(--btn-text-color);
   color: var(--button-color);
 }
 
