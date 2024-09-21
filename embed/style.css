@@ -279,7 +279,7 @@ dialog {
     font-size: min(5vw, 3rem);
   }
 }
-@media (max-height: 250px) {
+@media (max-height: 500px) {
   .sizable * {
     font-size: min(5vh, 3rem);
   }
