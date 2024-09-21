@@ -12,41 +12,11 @@
 <body>
     <h1>welcome to plinkDice</h1>
     <p class="welcome__text">Need to roll some dice? We've got you covered.</p>
-    <iframe src="https://einar-method.github.io/dice-app/embed"  height="300px" frameborder="0" id="plinkDice" allowfullscreen></iframe>
-    <!-- <iframe src="https://einar-method.github.io/dice-app/embed?fontMain=%27Lexend%27%252C%2520sans-serif&buttonColor=%2523a811e1&btnTextColor=%2523f2f0e6&btnShadowColor=%2523f2f0e6&textBrightColor=%2523f2f0e6&textDarkColor=%2523003501&linkColor=%252399ca3c&backgroundPrimaryColor=%2523000000&backgroundSecondaryColor=%2523c0c0c0&backgroundResultsColor=%2523f2f0e6&appWidth=680&appHeight=250" width="680" height="250" frameborder="0" allowfullscreen></iframe> -->
-    <!-- <div id="appHolder">
-        <div id="web-tool-container" class="sizable">
-            <button class="dice__btns" id="d6-btn">d6</button>
-            <button class="dice__btns" id="boon-btn">boon</button>
-            <button class="dice__btns" id="bane-btn">bane</button>
-            <button class="dice__btns" id="d20-btn">d20</button>
-            <button class="dice__btns" id="adv-btn">advantage</button>
-            <button class="dice__btns" id="disAdv-btn">disadv</button>
-            <div class="dice-box">
-                <p>
-                <input 
-                type="text" 
-                name="formula-input" 
-                id="formula-input"
-                class="dice-input" 
-                pattern="\d+d\d+(kl|kh|fr)?"
-                title="Enter a valid dice formula, such as 2d20kh"
-                placeholder="#d#"
-                autocomplete="off">
-                </p>
-                <button id="formula-btn">formula</button> 
-            </div>
-            <button class="dice__btns" id="dice-reset">clear</button>
-            <section class="dice-results">
-                <dialog id="🎲🎲">final: <span id="final-roll"></span></dialog>
-                <dialog id="🎲">individual: <span id="all-roll"></span></dialog>
-            </section>
-        </div>
-    </div> -->
+    <iframe src="https://einar-method.github.io/dice-app/embed"  height="400px" width="auto" frameborder="0" id="plinkDice" allowfullscreen></iframe>
     <section class="export__section">
         <p>Grab a quick plug and play iframe for your own website by clicking on the "copy to clipboard" button below.
             If you're looking to adjust the style and size of the embed, tap the "customize export" button. 
-            Check out the <a href="https://github.com/maccreations/plink-dice#readme">readme on Github</a> for more information.
+            Check out the <a href="https://github.com/einar-method/dice-app?tab=readme-ov-file#plinkdice">readme on Github</a> for more information.
         </p>
         <!-- <button id="exportAppBtn">export</button> -->
         <button class="export__section_copyBtn" onclick="copyCode()">copy to clipboard</button>
@@ -106,7 +76,6 @@
             </form>
         </div>
     </section>
-    <!-- <script src="diceApp.js"></script> -->
     <script src="app.js"></script>
 </body>
 </html>
