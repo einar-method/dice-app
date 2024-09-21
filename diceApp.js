@@ -1,3 +1,31 @@
+const rollLog = [];
+
+const RollEntry = function(user, entry) {
+    this.user = user;
+    this.time = new Date();
+    this.entryTxt = entry;
+    this.id = null;
+    this.final = "final";
+
+    // Assign an id based on the last entry in rollLog
+    const pushToLog = () => {
+        this.id = rollLog.length > 0 ? rollLog[rollLog.length - 1].id + 1 : 1;
+        
+        // Push this entry to the rollLog
+        rollLog.push(this);
+    };
+
+    // Automatically push the entry when created
+    pushToLog();
+};
+// new RollEntry("tom", "rolled a rnd int");
+// new RollEntry("bob", "rolled a rnd int");
+// new RollEntry("sue", "rolled a rnd int");
+// new RollEntry("joe", "rolled a rnd int");
+// new RollEntry("sam", "rolled a rnd int");
+// new RollEntry("pam", "rolled a rnd int");
+// console.log("This is the roll log", rollLog);
+
 function updateCSSVariables(newVars) {
     const root = document.documentElement; // Reference to the :root element
     
@@ -32,7 +60,7 @@ function urlToCssVars() {
         '--text-dark-color': urlParams.textDarkColor,
         '--background-primary-color': urlParams.backgroundPrimaryColor,
         '--background-secondary-color': urlParams.backgroundSecondaryColor,
-        '--backgroun-tertiary-color': urlParams.backgroundResultsColor,
+        '--background-tertiary-color': urlParams.backgroundResultsColor,
     };
     return newStyles;
 };
@@ -58,6 +86,17 @@ function getURLParams() {
 //     updateCSSVariables(urlParams);
 // });
 
+function setupLogBtn() {
+    const rollLogDisplay = document.getElementById("🎲🎲");
+    if (rollLogDisplay) {
+        //console.log("not empty");
+        rollLogDisplay.style.cursor = "pointer";
+        rollLogDisplay.addEventListener("click", function() {
+            console.log("User wants to see the entire roll log");
+        });
+    };
+};
+
 
 //TODO - we need to remove certian variables no longer used
 document.addEventListener("DOMContentLoaded", function() {
@@ -76,6 +115,13 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.log("No user-defined parameters found or default URL is in use.");
     }
+
+    //document.getElementById("🎲🎲")? setupLogBtn() : null;
+   
+
+    // document.getElementById("🎲🎲")?.addEventListener("click", function() {
+    //     console.log("User wants to see the entire roll log");
+    // });
 });
 
 
@@ -83,32 +129,32 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }; // Easy random int between two numbers. 
 
-function fadeInElements(elementIds) {
-    requestAnimationFrame(function () {
-        elementIds.forEach(function (elementId) {
-        // Check the computed style to ensure the initial styles are applied
-        window.getComputedStyle(document.getElementById(elementId)).opacity;
+// function fadeInElements(elementIds) {
+//     requestAnimationFrame(function () {
+//         elementIds.forEach(function (elementId) {
+//         // Check the computed style to ensure the initial styles are applied
+//         window.getComputedStyle(document.getElementById(elementId)).opacity;
   
-        // Set opacity to 1 after the initial styles are applied
-        document.getElementById(elementId).style.opacity = 1;
-      });
-    });
-};
+//         // Set opacity to 1 after the initial styles are applied
+//         document.getElementById(elementId).style.opacity = 1;
+//       });
+//     });
+// };
 
-function clearDiceResults() {
-    document.getElementById("formula-input").value = "";
-    dialogFade(document.getElementById("🎲🎲"), 0)
-    dialogFade(document.getElementById("🎲"), 0)
-};
+// function clearDiceResults() {
+//     document.getElementById("formula-input").value = "";
+//     dialogFade(document.getElementById("🎲🎲"), 0)
+//     dialogFade(document.getElementById("🎲"), 0)
+// };
 
 /// WAY TOO MUCH CODE FOR A TRANSITION ///
-function dialogFade(element, opacity) {
-    element.style.opacity = opacity;
-    element.style.transition = "none"; // Disable transition temporarily
-    requestAnimationFrame(() => {
-      element.style.transition = ""; // Re-enable transition
-    });
-};
+// function dialogFade(element, opacity) {
+//     element.style.opacity = opacity;
+//     element.style.transition = "none"; // Disable transition temporarily
+//     requestAnimationFrame(() => {
+//       element.style.transition = ""; // Re-enable transition
+//     });
+// };
 
 // THIS IS THE HEART OF THE DICE BRAIN
 function rollDice() {
@@ -128,16 +174,20 @@ function showDiceRoll(roll) {
     }
 
     let finalRoll = 0;
+    let rollText = "";
 
     if (roll.type == "fr") {
         finalRoll = rolls.reduce((sum, roll) => sum + roll, 0);
-        console.log("With a flat roll, the subtotal is:", finalRoll);
+        rollText = `Rolling a flat ${roll.amount}d${roll.face} resulted in a ${rolls.join(", ")}, with a total of ${finalRoll}.`;
+        console.log(rollText);
     } else if (roll.type == "kh") {
         finalRoll = Math.max(...rolls);
-        console.log("With a boon, the subtotal is:", finalRoll);
+        rollText = `Rolling ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Keeping the highest gives a total of ${finalRoll}.`;
+        console.log(rollText);
     } else if (roll.type == "kl") {
         finalRoll = Math.min(...rolls);
-        console.log("With a bane, the subtotal is:", finalRoll);
+        rollText = `Rolling ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Keeping the lowest gives a total of ${finalRoll}.`;
+        console.log(rollText);
     } else {
         console.error("Invalid roll type");
     }
@@ -165,20 +215,28 @@ function showDiceRoll(roll) {
         console.log("With a modifier, final roll is:", finalRoll);
     }
 
-    displayRolls(rolls, finalRoll);
+    new RollEntry("default", rollText)
+    console.log("rollLog", rollLog);
+
+    displayRolls(finalRoll, rollText);
 };
 
-function displayRolls(rolls, final) {
-    const innerAllRolls = document.getElementById("all-roll");
-    const innerFinalRoll = document.getElementById("final-roll");
-    innerAllRolls.innerHTML = rolls.join(", ");
-    innerFinalRoll.innerHTML = final;
-    document.getElementById("🎲🎲").open = true;
-    document.getElementById("🎲").open = true;
+function displayRolls(final, rolls) {
+    const innerAllRolls = document.getElementById("🎲🎲");
+    if (innerAllRolls.innerHTML == "") {
+        setupLogBtn();
+    };
+    const innerFinalRoll = document.getElementById("🎲");
+    innerAllRolls.innerText = rolls;
+    // innerAllRolls.innerHTML = rolls.join(", ");
+    innerFinalRoll.innerText = final;
+    //document.getElementById("🎲🎲").open = true;
+    //document.getElementById("🎲").open = true;
 
     // Below is needed to get the first transition to work
     // There must be an easier way, have not figured it out yet
-    fadeInElements(["🎲", "🎲🎲"])
+    //fadeInElements(["🎲", "🎲🎲"])
+    
 };
 
 window.onload = function() {

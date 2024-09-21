@@ -12,9 +12,9 @@
   --btn-shadow-color: #f2f0e6;
   --text-bright-color: #f2f0e6;
   --text-dark-color: #212121;
-  --background-primary-color: lightgray;
+  --background-primary-color: #e6e6e6;
   --background-secondary-color: #e8fbe8;
-  --backgroun-tertiary-color: transparent;
+  --background-tertiary-color: #e8e8fb;
 
   /* --app-width: 100%;
   --app-height: 250px; */
@@ -51,7 +51,7 @@ body {
   /* background-color: var(--tirtary-color); */
 }
 
-.dice-results {
+.roll__results_container {
   grid-column: span 3;
   /* grid-row: span 2; */
   /* grid-row: 1fr; */
@@ -63,26 +63,60 @@ body {
   /* grid-auto-rows: 40vh; */
 }
 
+.roll__results_final,
+.roll__results_all {
+  display: grid;
+  grid-template-rows: auto 2fr;
+}
+
+.roll__results_all {
+  grid-column: span 2;
+  /* background-color: var(--background-tertiary-color); */
+}
+
+.roll__results_final p,
+.roll__results_all p {
+  font-size: x-small;
+  background-color: var(--button-color);
+  color: var(--btn-text-color);
+  text-align: center;
+}
+
+.roll__results_all p {
+  grid-column: span 2;
+}
+
 #🎲🎲, #🎲 {
   width: 100%;
   height: 100%;
   display: flex;
   position: relative;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   /* font-size: 2.8vmin; */
   /* font-size: max(2.8vmin, 3rem); */
   /* justify-content: center; */
   align-items: center;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  box-sizing: border-box; 
 }
 
-#🎲🎲 {
-  grid-column: span 1;
-  background-color: var(--background-secondary-color);
-}
 #🎲 {
+  grid-column: span 1;
+  display: inherit;
+  background-color: var(--background-secondary-color);
+  /* align-items: center; */
+  align-self: center;
+  text-align: center;
+  color: var(--text-dark-color);
+  font-size: larger;
+  text-decoration: underline;
+  padding: 1em;
+  border: 2px solid var(--button-color);
+}
+#🎲🎲 {
   grid-column: span 2;
-  background-color: var(--backgroun-tertiary-color);
+  background-color: var(--background-tertiary-color);
+  padding: 1em;
+  /* cursor: pointer; */
 }
 
 ::placeholder {
@@ -140,7 +174,8 @@ body {
 }
 
 .dice__btns:hover {
-  box-shadow: inset 0 0 0 100px var(--btn-text-color);
+  /* box-shadow: inset 0 0 0 100px var(--btn-text-color); */
+  background-color: var(--btn-text-color);
   color: var(--button-color);
 }
 
