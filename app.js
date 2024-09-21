@@ -86,8 +86,8 @@ document.getElementById("styleForm").addEventListener("submit", function(event) 
     const backgroundPrimaryColor = document.getElementById("backgroundPrimaryColor").value;
     const backgroundSecondaryColor = document.getElementById("backgroundSecondaryColor").value;
     const backgroundTertiaryColor = document.getElementById("backgroundTertiaryColor").value;
-    const appWidth = document.getElementById("appWidth").value;
-    const appHeight = document.getElementById("appHeight").value;
+    //const appWidth = document.getElementById("appWidth").value;
+    //const appHeight = document.getElementById("appHeight").value;
 
     // Build the query string
     const queryParams = new URLSearchParams({
