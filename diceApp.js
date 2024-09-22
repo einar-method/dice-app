@@ -18,13 +18,6 @@ const RollEntry = function(user, entry) {
     // Automatically push the entry when created
     pushToLog();
 };
-// new RollEntry("tom", "rolled a rnd int");
-// new RollEntry("bob", "rolled a rnd int");
-// new RollEntry("sue", "rolled a rnd int");
-// new RollEntry("joe", "rolled a rnd int");
-// new RollEntry("sam", "rolled a rnd int");
-// new RollEntry("pam", "rolled a rnd int");
-// console.log("This is the roll log", rollLog);
 
 function updateCSSVariables(newVars) {
     const root = document.documentElement; // Reference to the :root element
@@ -77,15 +70,6 @@ function getURLParams() {
     return result;
 };
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     console.log("We are starting to try and parse now")
-//     // Get URL parameters
-//     const urlParams = urlToCssVars();
-    
-//     // Call updateCSSVariables with the URL parameters
-//     updateCSSVariables(urlParams);
-// });
-
 function setupLogBtn() {
     const rollLogDisplay = document.getElementById("🎲🎲");
     if (rollLogDisplay) {
@@ -99,8 +83,6 @@ function setupLogBtn() {
     };
 };
 
-
-//TODO - we need to remove certian variables no longer used
 document.addEventListener("DOMContentLoaded", function() {
     //const defaultUrl = "https://einar-method.github.io/dice-app/embed";
     const currentUrl = window.location.href;
@@ -117,46 +99,11 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.log("No user-defined parameters found or default URL is in use.");
     }
-
-    //document.getElementById("🎲🎲")? setupLogBtn() : null;
-   
-
-    // document.getElementById("🎲🎲")?.addEventListener("click", function() {
-    //     console.log("User wants to see the entire roll log");
-    // });
 });
-
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }; // Easy random int between two numbers. 
-
-// function fadeInElements(elementIds) {
-//     requestAnimationFrame(function () {
-//         elementIds.forEach(function (elementId) {
-//         // Check the computed style to ensure the initial styles are applied
-//         window.getComputedStyle(document.getElementById(elementId)).opacity;
-  
-//         // Set opacity to 1 after the initial styles are applied
-//         document.getElementById(elementId).style.opacity = 1;
-//       });
-//     });
-// };
-
-// function clearDiceResults() {
-//     document.getElementById("formula-input").value = "";
-//     dialogFade(document.getElementById("🎲🎲"), 0)
-//     dialogFade(document.getElementById("🎲"), 0)
-// };
-
-/// WAY TOO MUCH CODE FOR A TRANSITION ///
-// function dialogFade(element, opacity) {
-//     element.style.opacity = opacity;
-//     element.style.transition = "none"; // Disable transition temporarily
-//     requestAnimationFrame(() => {
-//       element.style.transition = ""; // Re-enable transition
-//     });
-// };
 
 // THIS IS THE HEART OF THE DICE BRAIN
 function rollDice() {
@@ -175,20 +122,46 @@ function showDiceRoll(roll) {
         rolls.push(getRndInteger(1, roll.face));
     }
 
+    let subRoll = 0;
     let finalRoll = 0;
+    let modifiedAmount = 0;
     let rollText = "";
+    let modifierText = "";
 
-    if (roll.type == "fr") {
-        finalRoll = rolls.reduce((sum, roll) => sum + roll, 0);
-        rollText = `Rolling a flat ${roll.amount}d${roll.face} resulted in a ${rolls.join(", ")}, with a total of ${finalRoll}.`;
+    if (roll.mod != null) {
+        if (roll.math == "-") {
+            //finalRoll = finalRoll - roll.mod;
+            modifiedAmount = -roll.mod;
+            modifierText = `, then subtracting a modifier of -${roll.mod},`;
+        } else if (roll.math == "+") {
+            //finalRoll = finalRoll + roll.mod;
+            modifiedAmount = roll.mod;
+            modifierText = `, then adding a modifier of +${roll.mod},`;
+        } else {
+            console.error("Invalid math operator");
+        }
+        //console.log("With a modifier, final roll is:", finalRoll);
+    } else { modifierText = ""; }
+
+    if (roll.type == "fr" && roll.amount === 1) {
+        subRoll = rolls[0];
+        finalRoll+= modifiedAmount ? subRoll + modifiedAmount : subRoll;
+        rollText = `Rolling a flat ${roll.amount}d${roll.face}${modifierText} gives a total of ${finalRoll}.`;
+        console.log(rollText);
+    } else if (roll.type == "fr" && roll.amount > 1) {
+        subRoll = rolls.reduce((sum, roll) => sum + roll, 0);
+        finalRoll+= modifiedAmount ? subRoll + modifiedAmount : subRoll;
+        rollText = `Rolling flat ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Adding the results gives ${subRoll}${modifierText}, for a total of ${finalRoll}.`;
         console.log(rollText);
     } else if (roll.type == "kh") {
-        finalRoll = Math.max(...rolls);
-        rollText = `Rolling ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Keeping the highest gives a total of ${finalRoll}.`;
+        subRoll = Math.max(...rolls);
+        finalRoll+= modifiedAmount ? subRoll + modifiedAmount : subRoll;
+        rollText = `Rolling ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Keeping the highest (${subRoll})${modifierText} gives a total of ${finalRoll}.`;
         console.log(rollText);
     } else if (roll.type == "kl") {
-        finalRoll = Math.min(...rolls);
-        rollText = `Rolling ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Keeping the lowest gives a total of ${finalRoll}.`;
+        subRoll = Math.min(...rolls);
+        finalRoll+= modifiedAmount ? subRoll + modifiedAmount : subRoll;
+        rollText = `Rolling ${roll.amount}d${roll.face} resulted in: ${rolls.join(", ")}. Keeping the lowest (${subRoll})${modifierText} gives a total of ${finalRoll}.`;
         console.log(rollText);
     } else {
         console.error("Invalid roll type");
@@ -206,16 +179,16 @@ function showDiceRoll(roll) {
     //     console.error("Invalid roll type");
     // }
 
-    if (roll.mod != null) {
-        if (roll.math == "-") {
-            finalRoll = finalRoll - roll.mod;
-        } else if (roll.math == "+") {
-            finalRoll = finalRoll + roll.mod;
-        } else {
-            console.error("Invalid math operator");
-        }
-        console.log("With a modifier, final roll is:", finalRoll);
-    }
+    // if (roll.mod != null) {
+    //     if (roll.math == "-") {
+    //         finalRoll = finalRoll - roll.mod;
+    //     } else if (roll.math == "+") {
+    //         finalRoll = finalRoll + roll.mod;
+    //     } else {
+    //         console.error("Invalid math operator");
+    //     }
+    //     console.log("With a modifier, final roll is:", finalRoll);
+    // }
 
     new RollEntry("default", rollText)
     console.log("rollLog", rollLog);
@@ -438,8 +411,7 @@ function getEntireRollLog() {
         // Append the article to the container
         outputElm.appendChild(article);
     });
-
-}
+};
 
 function openForm() {
     getEntireRollLog();
@@ -449,3 +421,9 @@ function openForm() {
 function closeForm() {
     document.getElementById("rollLogContainer").style.display = "none";
 };
+
+// let a = 100;
+// let b = -95;
+// let c = 0;
+// c+= a + b;
+// console.log(c);
