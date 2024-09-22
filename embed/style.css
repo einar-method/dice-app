@@ -68,7 +68,8 @@ body {
 .roll__results_final,
 .roll__results_all {
   display: grid;
-  grid-template-rows: auto 2fr;
+  grid-template-rows: 10px 23vh;
+  max-height: 100%;
 }
 
 .roll__results_all {
@@ -90,7 +91,7 @@ body {
 
 #🎲🎲, #🎲 {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   /* display: flex; */
   /* position: relative; */
   /* white-space: pre-wrap; */
@@ -100,6 +101,7 @@ body {
   align-items: center;
   box-sizing: border-box; 
   border: 2px solid var(--button-color);
+  max-height: 100%;
 }
 
 #🎲 {
@@ -112,6 +114,7 @@ body {
   color: var(--text-dark-color);
   font-size: larger;
   text-decoration: underline;
+  height: 100%;
   /* padding: 1em; */
   /* border: 2px solid var(--button-color); */
 }
@@ -121,6 +124,7 @@ body {
   font-size: smaller;
   /* padding: 1em; */
   /* cursor: pointer; */
+  overflow-y: scroll;
 }
 
 ::placeholder {
