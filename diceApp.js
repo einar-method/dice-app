@@ -93,6 +93,8 @@ function setupLogBtn() {
         rollLogDisplay.style.cursor = "pointer";
         rollLogDisplay.addEventListener("click", function() {
             console.log("User wants to see the entire roll log");
+            openForm();
+            // getEntireRollLog();
         });
     };
 };
@@ -393,3 +395,57 @@ function checkToggle() {
 // }};
 
 // assignTab();
+
+function getEntireRollLog() {
+    const outputElm = document.getElementById("rollLogDisplay");
+    outputElm.innerHTML = "";
+
+    rollLog.forEach(entry => {
+        const article = document.createElement("article");
+        article.classList.add("roll__log_article");
+        
+        // user info
+        const userElement = document.createElement("h3");
+        userElement.textContent = `User: ${entry.user}`;
+        
+        // entry text
+        const entryTextElement = document.createElement("p");
+        entryTextElement.textContent = `Entry: ${entry.entryTxt}`;
+
+        // time element
+        const timeElement = document.createElement("time");
+        //timeElement.textContent = `Time: ${new Date(entry.time).toLocaleString()}`;
+        const formattedTime = new Date(entry.time).toLocaleString("en-GB", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+        timeElement.textContent = `${formattedTime}`;
+        
+        // id element (optional)
+        //const idElement = document.createElement("span");
+        //idElement.textContent = `ID: ${entry.id}`;
+        
+        // Append all elements to the article
+        article.appendChild(timeElement);
+        article.appendChild(userElement);
+        article.appendChild(entryTextElement);
+        //article.appendChild(idElement);
+        
+        // Append the article to the container
+        outputElm.appendChild(article);
+    });
+
+}
+
+function openForm() {
+    getEntireRollLog();
+    document.getElementById("rollLogContainer").style.display = "block";
+};
+
+function closeForm() {
+    document.getElementById("rollLogContainer").style.display = "none";
+};

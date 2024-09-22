@@ -25,6 +25,7 @@
   margin: 0;
   font-size: 14px;
   color: var(--text-dark-color);
+  /* box-sizing: border-box; */
 }
 
 html, body {
@@ -324,4 +325,87 @@ dialog {
   opacity: 100%;
   /*   border: 1px solid rgba(0, 0, 0, 0.1); */
   color: var(--btn-text-color);
+}
+
+.roll__log_popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid var(--background-primary-color);
+  z-index: 9;
+  box-sizing: border-box;
+}
+
+.roll__log_container {
+  max-width: 300px;
+  padding: 0.5em;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  /* box-sizing: border-box; */
+}
+
+.roll__log_container h1 {
+  color: var(--button-color);
+  text-align: center;
+  text-decoration: underline;
+}
+
+.roll__log_container section {
+  width: 300px;
+  border: none;
+  resize: none;
+  min-height: 200px;
+  max-height: 75vh;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+}
+
+.roll__log_container .btn {
+  background-color: var(--button-color);
+  color: var(--btn-text-color);
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.roll__log_container .cancel {
+  background-color: var(--button-color);
+}
+
+.roll__log_container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.roll__log_section .roll__log_article:nth-child(odd) {
+  background-color: var(--background-secondary-color);
+}
+
+.roll__log_section .roll__log_article:nth-child(even) {
+  background-color: var(--background-tertiary-color);
+}
+
+.roll__log_article time {
+  display: block;
+  font-size: 8px;
+  text-align: center;
+}
+
+.roll__log_article p {
+  font-size: 12px;
+  text-align: justify;
+  padding: 0.5em;
+}
+
+.roll__log_article h3 {
+  color: var(--button-color);
+  font-size: 0.8em;
+  padding-left: 6px;
 }
